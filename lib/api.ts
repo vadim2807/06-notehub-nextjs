@@ -39,21 +39,6 @@ const api = axios.create({
   },
 });
 
-// Добавляем перехватчик для отладки
-api.interceptors.request.use((config) => {
-  console.log('API Request:', config.url, 'Token from env:', API_TOKEN ? 'Present' : 'Missing');
-  console.log('Token value:', API_TOKEN);
-  return config;
-});
-
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    console.error('API Error:', error.response?.status, error.response?.data);
-    return Promise.reject(error);
-  }
-);
-
 export const fetchNotes = async (params: FetchNotesParams = {}): Promise<FetchNotesResponse> => {
   const { page = 1, perPage = 12, search } = params;
 
