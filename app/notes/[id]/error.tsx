@@ -1,5 +1,7 @@
 'use client';
 
+import css from './error.module.css';
+
 interface ErrorProps {
   error: Error & { digest?: string };
   reset: () => void;
@@ -7,27 +9,9 @@ interface ErrorProps {
 
 export default function Error({ error, reset }: ErrorProps) {
   return (
-    <div style={{ 
-      textAlign: 'center', 
-      padding: '20px',
-      backgroundColor: '#f8d7da',
-      color: '#721c24',
-      borderRadius: '4px',
-      margin: '20px'
-    }}>
+    <div className={css.container}>
       <p>Could not fetch note details. {error.message}</p>
-      <button 
-        onClick={reset}
-        style={{
-          marginTop: '10px',
-          padding: '8px 16px',
-          backgroundColor: '#dc3545',
-          color: '#fff',
-          border: 'none',
-          borderRadius: '4px',
-          cursor: 'pointer'
-        }}
-      >
+      <button className={css.button} onClick={reset}>
         Try again
       </button>
     </div>
