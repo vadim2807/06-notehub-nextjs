@@ -40,8 +40,11 @@ export default function NoteForm({ onCancel }: NoteFormProps) {
       initialValues={{ title: '', content: '', tag: 'Todo' as NoteTag }}
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
-        createNoteMutation.mutate(values);
-        setSubmitting(false);
+        createNoteMutation.mutate(values, {
+          onSettled: () => {
+            setSubmitting(false);
+          },
+        });
       }}
     >
       {({ isValid, dirty }) => (
